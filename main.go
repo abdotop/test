@@ -17,7 +17,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	// 	// Nous prenons la première qui est normalement l'adresse IP du client
 	// 	ip = strings.Split(ip, ",")[0]
 	// }
-	fmt.Fprintf(w, "Votre IP publique est : %s ==> %s", strings.Split(ip, ":")[0],strings.Split(public_ip, ":")[0])
+	fmt.Fprintf(w, "Votre IP publique est : %s ==> %s", ip,public_ip)
 }
 
 func main() {
