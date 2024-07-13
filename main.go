@@ -29,8 +29,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	app := octopus.New()
 
-	app.Get("/", func(c *octopus.Ctx) {
-		fmt.Println(c.RemoteIP())
+	app.Get("/",func(c *octopus.Ctx) {
+		fmt.Println()
+		ip,err:=c.RemoteIP()
+		c.WriteString(fmt.Sprintf("%v \n %v",ip,err))
 	})
 
 	app.Run(":" + os.Getenv("PORT"))
