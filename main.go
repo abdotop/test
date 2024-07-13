@@ -2,8 +2,10 @@ package main
 
 import (
 	"fmt"
+	"net/http"
 	// "net/http"
 	"os"
+
 	"github.com/abdotop/octopus"
 	// "strings"
 )
@@ -18,7 +20,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	// 	// Nous prenons la première qui est normalement l'adresse IP du client
 	// 	ip = strings.Split(ip, ",")[0]
 	// }
-	fmt.Fprintf(w, "Votre IP publique est : %s ==> %s", ip,public_ip)
+	fmt.Fprintf(w, "Votre IP publique est : %s ==> %s", ip, public_ip)
 }
 
 // func main() {
@@ -29,10 +31,10 @@ func handler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	app := octopus.New()
 
-	app.Get("/",func(c *octopus.Ctx) {
+	app.Get("/", func(c *octopus.Ctx) {
 		fmt.Println()
-		ip,err:=c.RemoteIP()
-		c.WriteString(fmt.Sprintf("%v \n %v",ip,err))
+		ip, err := c.RemoteIP()
+		c.WriteString(fmt.Sprintf("%v \n %v", ip, err))
 	})
 
 	app.Run(":" + os.Getenv("PORT"))
