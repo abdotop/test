@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 	"strings"
 )
 
@@ -20,5 +21,5 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	http.HandleFunc("/", handler)
-	http.ListenAndServe("192.168.132.129:8080", nil)
+	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
 }
