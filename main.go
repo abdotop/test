@@ -10,7 +10,7 @@ import (
 func handler(w http.ResponseWriter, r *http.Request) {
 	ip := r.Header.Get("X-Forwarded-For")
 	if ip == "" {
-		ip = r.RemoteAddr // Fallback to RemoteAddr if no X-Forwarded-For header is present
+		ip = "ip"+r.RemoteAddr // Fallback to RemoteAddr if no X-Forwarded-For header is present
 	} else {
 		// X-Forwarded-For peut contenir plusieurs adresses IP séparées par des virgules
 		// Nous prenons la première qui est normalement l'adresse IP du client
