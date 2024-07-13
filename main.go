@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"net/http"
+	// "net/http"
 	"os"
+	"github.com/abdotop/octopus"
 	// "strings"
 )
 
@@ -20,7 +21,17 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Votre IP publique est : %s ==> %s", ip,public_ip)
 }
 
+// func main() {
+// 	http.HandleFunc("/", handler)
+// 	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+// }
+
 func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":"+os.Getenv("PORT"), nil)
+	app := octopus.New()
+
+	app.Get("/", func(c *octopus.Ctx) {
+		fmt.Println(c.RemoteIP())
+	})
+
+	app.Run(":" + os.Getenv("PORT"))
 }
