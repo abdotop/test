@@ -9,7 +9,7 @@ import (
 
 func handler(w http.ResponseWriter, r *http.Request) {
 	public_ip := r.Header.Get("X-Forwarded-For")
-	ip = r.RemoteAddr
+	ip := r.RemoteAddr
 	// if ip == "" {
 	// 	 // Fallback to RemoteAddr if no X-Forwarded-For header is present
 	// } else {
